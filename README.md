@@ -1,16 +1,18 @@
-# petgrooming
+# 寵物美容店家 GitHub Pages
 
-利用 `google-2025-12-28.csv` 與 `寵物美容detail.csv` 產生 GitHub Pages 的靜態網站。執行 `generate_pages.py` 會將每一家店的獨立分頁與索引頁輸出到 `docs/` 資料夾（適用 GitHub Pages 的 `/docs` 來源）。
+使用 `google-2025-12-28.csv` 與 `寵物美容detail.csv` 產生靜態網站，為每間寵物美容店建立獨立介紹頁面，可直接部署到 GitHub Pages（`docs/` 目錄）。
 
-## 重新產生頁面
+## 如何重新產生網站
+1. 確保使用 Python 3，無需額外套件。
+2. 執行：
+   ```bash
+   python generate_sites.py
+   ```
+   會在 `docs/` 產出首頁（含搜尋/篩選）與 `docs/stores/<slug>/index.html` 的店家頁面，以及共用樣式與腳本。
+3. 將 `docs/` 推送到啟用 GitHub Pages 的分支即可公開瀏覽。
 
-```bash
-python generate_pages.py
-```
+## 資料來源
+- `google-2025-12-28.csv`：店名、評分、地址、營業資訊、網站等。
+- `寵物美容detail.csv`：店家地圖連結對應的封面圖片網址。
 
-產出的內容包含：
-- `docs/index.html`：所有店家的清單卡片，連結到各自的獨立頁面。
-- `docs/<店家 slug>/index.html`：單一店家頁面，提供地圖、地址、電話、官網與特色標籤。
-- `docs/assets/style.css`：共用樣式（自動建立）。
-
-如需更新資料，只要替換 CSV 後再次執行腳本即可重新輸出網頁。
+目前資料共 9 間店家，生成腳本會自動跳過空白列並確保網址 slug 唯一。
